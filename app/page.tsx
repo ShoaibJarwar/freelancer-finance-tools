@@ -116,7 +116,14 @@ export default function Home() {
           </p>
 
           <p className="mt-8 text-[0.8125rem] text-muted-foreground">
-            Coming next: a guide on Upwork fees, explained.
+            Not sure which fee applies to you?{" "}
+            <Link
+              href="/guides/upwork-fees"
+              className="font-medium text-primary hover:underline"
+            >
+              Read how Upwork freelancer fees work
+            </Link>
+            .
           </p>
         </Container>
       </div>

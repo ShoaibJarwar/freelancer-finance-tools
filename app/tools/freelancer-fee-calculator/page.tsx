@@ -47,6 +47,17 @@ export default function FreelancerFeeCalculatorPage() {
 
         <FeeCalculatorForm />
 
+        <p className="mt-4 text-[0.8125rem] text-muted-foreground">
+          Not sure which fee applies?{" "}
+          <Link
+            href="/guides/upwork-fees"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            Learn how Upwork freelancer fees work
+          </Link>
+          .
+        </p>
+
         <section className="mt-10">
           <h2 className="text-lg font-semibold text-foreground">
             How this calculation works
