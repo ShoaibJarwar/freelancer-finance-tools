@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   },
   description:
     "Placeholder metadata — to be replaced once the brand and site copy are finalized.",
+  verification: {
+    google: "_RMV8KdV4mNO6DLVBaabSzaUqIU9-zh5jr2l_2oEOTM",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
