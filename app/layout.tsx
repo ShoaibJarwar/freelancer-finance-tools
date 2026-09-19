@@ -11,11 +11,10 @@ export const metadata: Metadata = {
   description:
     "Placeholder metadata — to be replaced once the brand and site copy are finalized.",
   verification: {
-    google: "orqsH3Gz3_w2F6JbqzZu7uACcO80HtKWNsGTN0iqkUE",
+    google: "_RMV8KdV4mNO6DLVBaabSzaUqIU9-zh5jr2l_2oEOTM",
   },
 };
 
-{/* <meta name="google-site-verification" content="orqsH3Gz3_w2F6JbqzZu7uACcO80HtKWNsGTN0iqkUE" /> */}
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
