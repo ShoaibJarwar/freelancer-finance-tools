@@ -72,6 +72,10 @@ function resolvePercentage(scenario: FeeScenario, selected: number | undefined):
       );
     }
 
+    if (!Number.isFinite(selected)) {
+      throw new Error(`Scenario "${scenario.id}": selectedPercentage must be a finite number.`);
+    }
+
     if (selected < min || selected > max) {
       throw new Error(
         `selectedPercentage (${selected}) is outside scenario "${scenario.id}"'s valid range (${min}–${max}).`
