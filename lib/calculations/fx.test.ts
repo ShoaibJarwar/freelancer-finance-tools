@@ -17,11 +17,10 @@ test("convertUsingReferenceRate converts a zero amount", () => {
 });
 
 test("convertUsingReferenceRate converts a normal amount and flags it as reference-only", () => {
-  const input = toMinorUnits(100); // $100.00
+  const input = toMinorUnits(100);
   const result = convertUsingReferenceRate(input, usdToPkr);
   assert.equal(result.isReferenceOnly, true);
   assert.equal(result.rate, usdToPkr.rate);
-  // 100 * 277.3228 = 27732.28 -> minor units, rounded
   assert.equal(result.outputMinorUnits, Math.round(input * usdToPkr.rate));
 });
 

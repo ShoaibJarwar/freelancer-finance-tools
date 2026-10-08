@@ -55,6 +55,13 @@ export default function FreelancerFeeCalculatorPage() {
           >
             Learn how Upwork freelancer fees work
           </Link>
+          . Want to see this converted to PKR through Payoneer too?{" "}
+          <Link
+            href="/tools/payment-comparison"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            Try the Payment Comparison tool
+          </Link>
           .
         </p>
 
@@ -63,22 +70,17 @@ export default function FreelancerFeeCalculatorPage() {
             How this calculation works
           </h2>
           <ol className="mt-3 list-decimal space-y-2 pl-5 text-[0.9375rem] leading-relaxed text-muted-foreground">
-            <li>Start with the client payment you enter.</li>
+            <li>Start with your client payment.</li>
             <li>
-              Apply Upwork&apos;s freelancer service fee for the contract
-              type you select. For Marketplace contracts, this uses the
-              exact percentage you enter, since Upwork sets that rate per
-              contract rather than using one fixed number.
+              Apply the Upwork service fee for the selected contract.
             </li>
-            <li>Subtract that fee from the client payment.</li>
+            <li>Subtract that fee from the gross payment.</li>
             <li>
-              The result is your amount after Upwork&apos;s platform fee —
-              not a full estimate of your final payout.
+              The result is your amount after the platform fee.
             </li>
             <li>
-              If you turn on the reference conversion, that after-fee
-              amount is converted using a dated reference exchange rate,
-              shown separately from the USD figures above.
+              If a reference currency conversion is selected, convert that
+              amount using the dated reference rate.
             </li>
           </ol>
         </section>

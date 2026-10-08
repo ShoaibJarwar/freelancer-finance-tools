@@ -53,7 +53,15 @@ export default function UpworkFeesGuidePage() {
           >
             Freelancer Fee Calculator
           </Link>{" "}
-          means what you think it means.
+          means what you think it means. For how platform fees work more
+          generally, across any freelance platform, see{" "}
+          <Link
+            href="/guides/how-freelancer-platform-fees-work"
+            className="text-primary underline underline-offset-2 hover:no-underline"
+          >
+            How Freelancer Platform Fees Work
+          </Link>
+          .
         </p>
 
         <section className="mt-10">
@@ -220,6 +228,23 @@ export default function UpworkFeesGuidePage() {
               <Button>Open the Freelancer Fee Calculator</Button>
             </Link>
           </div>
+          <p className="mt-4 text-[0.8125rem] text-muted-foreground">
+            Withdrawing to a Pakistani bank account through Payoneer?{" "}
+            <Link
+              href="/tools/payment-comparison"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              See what&apos;s calculable about that step too
+            </Link>
+            . Want the bigger picture of all freelancer payment costs?{" "}
+            <Link
+              href="/guides/freelancer-payment-fees-explained"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              Read Freelancer Payment Fees Explained
+            </Link>
+            .
+          </p>
         </section>
       </Container>
     </div>

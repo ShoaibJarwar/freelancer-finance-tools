@@ -67,7 +67,6 @@ test("A zero gross amount produces a zero result", () => {
 
 test("A decimal gross amount is handled without floating-point drift", () => {
   const result = calculateCalculatorResult({ grossAmount: 499.99, scenario: direct });
-  // 5% of $499.99 (49999 cents) = 2499.95 -> rounds to 2500
   assert.equal(result.fee.feeMinorUnits, 2500);
   assert.equal(result.fee.netMinorUnits, 47499);
 });
@@ -89,7 +88,6 @@ test("A reference rate converts the post-fee amount, in the USD -> PKR direction
   });
   assert.ok(result.conversion);
   assert.equal(result.conversion!.isReferenceOnly, true);
-  // Converts the NET (post-fee) amount, not the gross amount.
   assert.equal(result.conversion!.inputMinorUnits, result.fee.netMinorUnits);
   assert.equal(
     result.conversion!.outputMinorUnits,

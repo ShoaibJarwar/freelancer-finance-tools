@@ -26,7 +26,6 @@ test("fromMinorUnits converts back to a decimal amount", () => {
 });
 
 test("applyPercentage computes a percentage of an integer amount", () => {
-  // 10% of $500.00 (50000 cents) = $50.00 (5000 cents)
   assert.equal(applyPercentage(50000, 0.1), 5000);
 });
 
@@ -35,7 +34,6 @@ test("applyPercentage handles 0%", () => {
 });
 
 test("applyPercentage rounds to the nearest minor unit", () => {
-  // 15% of $19.99 (1999 cents) = 299.85 -> rounds to 300
   assert.equal(applyPercentage(1999, 0.15), 300);
 });
 

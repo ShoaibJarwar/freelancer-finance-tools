@@ -29,11 +29,11 @@ test("calculateFeeAmount handles a zero gross amount", () => {
 });
 
 test("calculateFeeAmount applies Direct Contracts' flat 5% fee", () => {
-  const gross = toMinorUnits(500); // $500.00
+  const gross = toMinorUnits(500);
   const result = calculateFeeAmount(gross, directContractsScenario);
   assert.equal(result.appliedPercentage, 0.05);
-  assert.equal(result.feeMinorUnits, 2500); // $25.00
-  assert.equal(result.netMinorUnits, 47500); // $475.00
+  assert.equal(result.feeMinorUnits, 2500);
+  assert.equal(result.netMinorUnits, 47500);
 });
 
 test("calculateFeeAmount applies Direct Contracts (Freelancer Plus)'s 0% fee", () => {
@@ -67,8 +67,8 @@ test("calculateFeeAmount accepts a valid selectedPercentage within the range", (
   const result = calculateFeeAmount(gross, marketplaceScenario, {
     selectedPercentage: 0.1,
   });
-  assert.equal(result.feeMinorUnits, 5000); // $50.00
-  assert.equal(result.netMinorUnits, 45000); // $450.00
+  assert.equal(result.feeMinorUnits, 5000);
+  assert.equal(result.netMinorUnits, 45000);
 });
 
 test("calculateFeeAmount accepts the boundary values of a range", () => {
@@ -76,7 +76,7 @@ test("calculateFeeAmount accepts the boundary values of a range", () => {
   const atZero = calculateFeeAmount(gross, marketplaceScenario, { selectedPercentage: 0 });
   const atMax = calculateFeeAmount(gross, marketplaceScenario, { selectedPercentage: 0.15 });
   assert.equal(atZero.feeMinorUnits, 0);
-  assert.equal(atMax.feeMinorUnits, 7500); // $75.00
+  assert.equal(atMax.feeMinorUnits, 7500);
 });
 
 test("calculateFeeAmount rejects a negative gross amount", () => {
@@ -84,7 +84,6 @@ test("calculateFeeAmount rejects a negative gross amount", () => {
 });
 
 test("calculateFeeAmount rounds fee to the nearest minor unit", () => {
-  // 5% of $19.99 (1999 cents) = 99.95 -> rounds to 100
   const result = calculateFeeAmount(1999, directContractsScenario);
   assert.equal(result.feeMinorUnits, 100);
   assert.equal(result.netMinorUnits, 1899);
@@ -102,4 +101,14 @@ test("calculateFeeAmount throws for an unsupported fee type", () => {
     source: { name: "Test fixture", url: "https://example.com", verifiedAt: "2026-09-14" },
   };
   assert.throws(() => calculateFeeAmount(1000, fixedScenario), /only supports "percentage"/);
+});
+
+test("calculateFeeAmount rejects a non-finite selectedPercentage for a range scenario", () => {
+  const gross = toMinorUnits(500);
+  assert.throws(() =>
+    calculateFeeAmount(gross, marketplaceScenario, { selectedPercentage: NaN })
+  );
+  assert.throws(() =>
+    calculateFeeAmount(gross, marketplaceScenario, { selectedPercentage: Infinity })
+  );
 });

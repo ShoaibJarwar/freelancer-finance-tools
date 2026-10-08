@@ -1,176 +1,185 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
-import { Card, CardBody } from "@/components/ui/Card";
+import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Alert } from "@/components/ui/Alert";
 import { ToolPreviewFlow } from "@/components/home/ToolPreviewFlow";
-
-// No metadataBase/canonical set yet — the production domain isn't chosen
-// (see Phase D report). Once it is, set metadataBase in the root layout
-// and this page will inherit a correct canonical automatically.
-export const metadata: Metadata = {
-  title: "Freelancer Finance Tools",
-  description:
-    "See how much of a client payment you actually receive after platform fees, withdrawal costs, and currency conversion.",
-};
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero */}
-      <Container className="pt-12 pb-10 sm:pt-16 sm:pb-14">
+    <div className="py-12 sm:py-16">
+      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div className="max-w-[640px]">
           <h1 className="text-[2rem] font-semibold leading-tight text-foreground sm:text-[2.25rem]">
             See how much you&apos;ll actually receive, before you invoice.
           </h1>
-          <p className="mt-4 text-[1.0625rem] leading-relaxed text-muted-foreground">
-            Platform fees, withdrawal costs, and currency conversion all take
-            a share before a payment reaches you. This site helps
+          <p className="mt-3 text-[1.0625rem] leading-relaxed text-muted-foreground">
+            Platform fees, withdrawal costs, and currency conversion all
+            take a share before a payment reaches you. This site helps
             freelancers and remote workers with international clients see
             the real number, not just the invoice total.
           </p>
-          <div className="mt-7">
-            <Link href="/tools/freelancer-fee-calculator">
-              <Button className="px-6">Calculate your net amount</Button>
-            </Link>
-          </div>
-        </div>
-      </Container>
-
-      {/* Tool preview */}
-      <Container className="pb-14 sm:pb-20">
-        <div className="grid gap-8 sm:grid-cols-[minmax(0,1fr)_360px] sm:items-start">
-          <div className="max-w-[520px]">
-            <h2 className="text-xl font-semibold text-foreground">
-              Freelancer Fee Calculator
-            </h2>
-            <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground">
-              Enter what a client is paying you and see it broken down step
-              by step: platform fee, withdrawal cost, currency conversion,
-              and what&apos;s actually left. Still in development, this is
-              what the breakdown will look like.
-            </p>
-          </div>
-          <ToolPreviewFlow />
-        </div>
-      </Container>
-
-      {/* Trust / transparency */}
-      <div className="border-t border-border bg-surface">
-        <Container className="py-12 sm:py-16">
-          <div className="max-w-[640px]">
-            <h2 className="text-xl font-semibold text-foreground">
-              How we handle the numbers
-            </h2>
-            <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
-              Fees and rates come from official provider documentation where
-              it&apos;s available. Every figure the calculator uses will
-              show what it&apos;s based on and when it was last checked.
-              Provider terms vary by account, region, and time, so results
-              are estimates — always confirm the exact charge with your
-              provider before relying on it.
-            </p>
-          </div>
-        </Container>
-      </div>
-
-      {/* Why this matters */}
-      <Container className="py-12 sm:py-16">
-        <div className="max-w-[640px]">
-          <h2 className="text-xl font-semibold text-foreground">
-            What a client pays isn&apos;t what you keep
-          </h2>
-          <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
-            A $500 payment rarely arrives as $500. Along the way, a platform
-            service fee, a withdrawal or payout charge, and the cost of
-            converting currencies can each take a share. Most freelancers
-            only find out the real total after the money lands — this site
-            is built to show it beforehand.
-          </p>
-        </div>
-      </Container>
-
-      {/* Tools + guide */}
-      <div className="border-t border-border">
-        <Container className="py-12 sm:py-16">
-          <h2 className="text-xl font-semibold text-foreground">Tools</h2>
-          <Card className="mt-5 max-w-[560px]">
-            <CardBody>
-              <p className="text-[0.9375rem] font-medium text-foreground">
-                Freelancer Fee Calculator
-              </p>
-              <p className="mt-1 text-[0.875rem] text-muted-foreground">
-                See what you&apos;ll actually receive from a client payment.
-              </p>
-              <Link
-                href="/tools/freelancer-fee-calculator"
-                className="mt-3 inline-block text-[0.875rem] font-medium text-primary hover:underline"
-              >
-                Open the calculator
-              </Link>
-            </CardBody>
-          </Card>
-          <p className="mt-4 text-[0.875rem] text-muted-foreground">
-            A payment-method comparison tool and a rate calculator are
-            planned next.
-          </p>
-
-          <p className="mt-8 text-[0.8125rem] text-muted-foreground">
-            Not sure which fee applies to you?{" "}
+          <div className="mt-6">
             <Link
-              href="/guides/upwork-fees"
-              className="font-medium text-primary hover:underline"
+              href="/tools/freelancer-fee-calculator"
+              className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-primary px-4 text-[0.9375rem] font-medium text-primary-foreground hover:bg-primary-hover"
             >
-              Read how Upwork freelancer fees work
+              Calculate your net amount
             </Link>
-            .
-          </p>
-        </Container>
-      </div>
+          </div>
+        </div>
 
-      {/* Audience */}
-      <Container className="py-12 sm:py-16">
-        <div className="max-w-[640px]">
+        <Card className="mt-10 max-w-[640px]">
+          <CardHeader>
+            <CardTitle>Example calculation (not real figures)</CardTitle>
+          </CardHeader>
+          <CardBody>
+            <ToolPreviewFlow />
+          </CardBody>
+        </Card>
+
+        <div className="mt-12 max-w-[640px]">
           <h2 className="text-xl font-semibold text-foreground">
-            Who it&apos;s for
+            How we approach the numbers
           </h2>
           <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
-            Freelancers, remote workers, and independent consultants —
-            developers, designers, writers, and small agencies — who bill
-            clients abroad and get paid in a currency other than the one
-            they spend day to day.
+            Provider fees are sourced from official documentation where
+            possible. Every important assumption is shown, with a
+            verification date. Where provider-specific conditions can
+            vary — a currency conversion rate, for example — the
+            calculation is labeled as an estimate rather than presented as
+            exact. If something can&apos;t be verified, we say so instead
+            of guessing.
           </p>
         </div>
-      </Container>
 
-      {/* About preview */}
-      <div className="border-t border-border bg-surface">
-        <Container className="py-12 sm:py-16">
-          <div className="max-w-[640px]">
-            <h2 className="text-xl font-semibold text-foreground">
-              Built independently
-            </h2>
-            <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
-              This is an independent project, not run by a bank or payment
-              provider. It exists to make fee and payment information easier
-              to see clearly in one place.
-            </p>
-          </div>
-        </Container>
-      </div>
-
-      {/* Final CTA */}
-      <Container className="py-14 sm:py-20">
-        <div className="max-w-[560px]">
-          <p className="text-xl font-semibold text-foreground">
-            Know what you&apos;ll actually receive before you send the
-            invoice.
+        <div className="mt-10 max-w-[640px]">
+          <h2 className="text-xl font-semibold text-foreground">
+            What clients pay isn&apos;t always what you receive
+          </h2>
+          <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            A freelancer might see a $500 client payment, but the actual
+            amount that lands in their account can be affected by platform
+            fees, payment or withdrawal charges, and exchange-rate
+            differences. Each of these is a separate deduction, and none of
+            them are guaranteed to be the same from one platform or
+            provider to the next.
           </p>
-          <Link href="/tools/freelancer-fee-calculator">
-            <Button className="mt-6">Calculate your net amount</Button>
+        </div>
+
+        <div className="mt-10 max-w-[640px]">
+          <h2 className="text-xl font-semibold text-foreground">Tools</h2>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <Card className="max-w-[560px]">
+              <CardBody>
+                <p className="text-[0.9375rem] font-medium text-foreground">
+                  Freelancer Fee Calculator
+                </p>
+                <p className="mt-1 text-[0.875rem] text-muted-foreground">
+                  See what you&apos;ll actually receive from a client payment.
+                </p>
+                <Link
+                  href="/tools/freelancer-fee-calculator"
+                  className="mt-3 inline-block text-[0.875rem] font-medium text-primary hover:underline"
+                >
+                  Open the calculator
+                </Link>
+              </CardBody>
+            </Card>
+            <Card className="max-w-[560px]">
+              <CardBody>
+                <p className="text-[0.9375rem] font-medium text-foreground">
+                  Payment Comparison
+                </p>
+                <p className="mt-1 text-[0.875rem] text-muted-foreground">
+                  See what&apos;s calculable about an Upwork payment through
+                  Payoneer to Pakistan — and what isn&apos;t.
+                </p>
+                <Link
+                  href="/tools/payment-comparison"
+                  className="mt-3 inline-block text-[0.875rem] font-medium text-primary hover:underline"
+                >
+                  Open the comparison tool
+                </Link>
+              </CardBody>
+            </Card>
+          </div>
+          <p className="mt-4 text-[0.875rem] text-muted-foreground">
+            A freelancer rate calculator is planned next.
+          </p>
+        </div>
+
+        <div className="mt-10 max-w-[640px]">
+          <h2 className="text-xl font-semibold text-foreground">Guides</h2>
+          <ul className="mt-5 space-y-3">
+            <li>
+              <Link
+                href="/guides/upwork-fees"
+                className="text-[0.9375rem] font-medium text-primary hover:underline"
+              >
+                How Upwork Freelancer Fees Work
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guides/how-freelancer-platform-fees-work"
+                className="text-[0.9375rem] font-medium text-primary hover:underline"
+              >
+                How Freelancer Platform Fees Work
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guides/freelancer-payment-fees-explained"
+                className="text-[0.9375rem] font-medium text-primary hover:underline"
+              >
+                Freelancer Payment Fees Explained
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guides/usd-to-pkr-for-freelancers"
+                className="text-[0.9375rem] font-medium text-primary hover:underline"
+              >
+                USD to PKR for Freelancers
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="mt-10 max-w-[640px]">
+          <h2 className="text-xl font-semibold text-foreground">Who this is for</h2>
+          <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            Freelancers, remote employees, and independent consultants —
+            developers, designers, writers, and others — who bill
+            international clients and want to know what a payment is
+            actually worth once the dust settles.
+          </p>
+        </div>
+
+        <div className="mt-10 max-w-[640px]">
+          <h2 className="text-xl font-semibold text-foreground">
+            An independent project
+          </h2>
+          <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
+            This site is independently built with a focus on transparency —
+            sourced assumptions, visible verification dates, and estimates
+            labeled as estimates. It&apos;s a working project, not a
+            finished product.
+          </p>
+        </div>
+
+        <Alert variant="info" label="Before you go" className="mt-10 max-w-[640px]">
+          Know what you&apos;ll actually receive before you send the
+          invoice.
+        </Alert>
+        <div className="mt-4">
+          <Link
+            href="/tools/freelancer-fee-calculator"
+            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-primary px-4 text-[0.9375rem] font-medium text-primary-foreground hover:bg-primary-hover"
+          >
+            Calculate your net amount
           </Link>
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

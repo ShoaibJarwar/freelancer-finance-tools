@@ -22,8 +22,6 @@ const marketplaceScenario = upworkFeeScenarios.find((s) => s.id === MARKETPLACE_
 const directScenario = upworkFeeScenarios.find((s) => s.id === DIRECT_SCENARIO_ID)!;
 const directPlusScenario = upworkFeeScenarios.find((s) => s.id === DIRECT_PLUS_SCENARIO_ID)!;
 
-// Reference currencies are derived from the data, not hardcoded here — add
-// a new entry to fxReferenceRates and it becomes selectable automatically.
 const availableReferenceCurrencies = Array.from(
   new Set(fxReferenceRates.map((r) => r.quote))
 );

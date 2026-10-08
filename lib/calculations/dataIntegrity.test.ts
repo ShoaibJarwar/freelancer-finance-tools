@@ -73,8 +73,6 @@ test("every maxPercentage (variable-fee ceiling) is non-negative and at most 1",
   }
 });
 
-// --- Phase H.1: fee-type/field-combination invariants ---
-
 test('maxPercentage may only be set on a "variable" scenario (semantically ambiguous on fixed/percentage otherwise)', () => {
   for (const scenario of allFeeScenarios) {
     if (scenario.maxPercentage !== undefined) {

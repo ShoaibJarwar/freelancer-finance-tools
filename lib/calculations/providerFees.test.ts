@@ -32,7 +32,7 @@ test("verified percentage fee: calculates correctly", () => {
   const result = evaluateProviderFee(toMinorUnits(1000), scenario);
   assert.equal(result.calculable, true);
   if (result.calculable) {
-    assert.equal(result.feeMinorUnits, 5000); // 5% of $1000
+    assert.equal(result.feeMinorUnits, 5000);
     assert.equal(result.netMinorUnits, 95000);
     assert.equal(result.appliedPercentage, 0.05);
   }
@@ -42,7 +42,7 @@ test("fixed fee: correct deduction, using the real Payoneer USD same-currency sc
   const result = evaluateProviderFee(toMinorUnits(1000), usdSameCurrencyFixed);
   assert.equal(result.calculable, true);
   if (result.calculable) {
-    assert.equal(result.feeMinorUnits, 150); // $1.50
+    assert.equal(result.feeMinorUnits, 150);
     assert.equal(result.netMinorUnits, toMinorUnits(1000) - 150);
   }
 });
@@ -62,7 +62,7 @@ test("fixed fee: the EUR and GBP same-currency scenarios use their own currency'
 });
 
 test("fixed fee: rejects a fee that exceeds the gross amount", () => {
-  assert.throws(() => evaluateProviderFee(100, usdSameCurrencyFixed)); // $1.00 gross, $1.50 fee
+  assert.throws(() => evaluateProviderFee(100, usdSameCurrencyFixed));
 });
 
 test("composes two independently defined fee scenarios in sequence (testing the generic primitive — not a real provider's combined fixed+percentage rule)", () => {
@@ -84,7 +84,6 @@ test("composes two independently defined fee scenarios in sequence (testing the 
   const combined = evaluateProviderFee(fixedResult.netMinorUnits, percentageScenario);
   assert.equal(combined.calculable, true);
   if (combined.calculable) {
-    // (1000 - 1.50) * 2% applied on the remainder, composed via two calls
     assert.equal(combined.grossMinorUnits, gross - 150);
     assert.equal(combined.netMinorUnits, gross - 150 - combined.feeMinorUnits);
   }
@@ -114,7 +113,7 @@ test("percentage fee range: accepts the lower boundary (min)", () => {
 test("percentage fee range: accepts the upper boundary (max)", () => {
   const result = evaluateProviderFee(toMinorUnits(500), rangeScenario, { selectedPercentage: 0.1 });
   assert.equal(result.calculable, true);
-  if (result.calculable) assert.equal(result.feeMinorUnits, 5000); // 10% of $500
+  if (result.calculable) assert.equal(result.feeMinorUnits, 5000);
 });
 
 test("percentage fee range: rejects a selectedPercentage below the minimum", () => {
@@ -192,7 +191,6 @@ test("rounding follows the project's existing minor-unit rounding policy (verifi
     status: "verified",
     source: { name: "Test", url: "https://example.com", verifiedAt: "2026-09-16" },
   };
-  // 15% of $19.99 (1999 cents) = 299.85 -> rounds to 300, matching money.ts's existing behavior
   const result = evaluateProviderFee(1999, scenario);
   assert.equal(result.calculable, true);
   if (result.calculable) {
