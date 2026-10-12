@@ -1,27 +1,41 @@
 import Link from "next/link";
 import { Container } from "./Container";
 
-// Items without an href are planned pages that don't exist yet — shown as
-// plain text (not links) so the footer previews the future structure
-// without ever pointing to a broken route.
+// Every entry links to a real route. A test (tests/siteIntegrity.test.ts)
+// fails if any href here points at a page that doesn't exist.
 const columns: {
   heading: string;
-  items: { label: string; href?: string }[];
+  items: { label: string; href: string }[];
 }[] = [
   {
-    heading: "Product",
-    items: [{ label: "Tools" }, { label: "Guides" }],
+    heading: "Tools",
+    items: [
+      { label: "Freelancer Fee Calculator", href: "/tools/freelancer-fee-calculator" },
+      { label: "Payment Comparison", href: "/tools/payment-comparison" },
+    ],
+  },
+  {
+    heading: "Guides",
+    items: [
+      { label: "How Upwork Fees Work", href: "/guides/upwork-fees" },
+      { label: "How Platform Fees Work", href: "/guides/how-freelancer-platform-fees-work" },
+      { label: "Payment Fees Explained", href: "/guides/freelancer-payment-fees-explained" },
+      { label: "USD to PKR for Freelancers", href: "/guides/usd-to-pkr-for-freelancers" },
+    ],
   },
   {
     heading: "Company",
-    items: [{ label: "About" }, { label: "Contact" }],
+    items: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     heading: "Legal",
     items: [
-      { label: "Privacy" },
-      { label: "Terms" },
-      { label: "Affiliate Disclosure" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+      { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
     ],
   },
 ];
@@ -30,40 +44,39 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
       <Container className="py-10">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           {columns.map((column) => (
-            <div key={column.heading}>
+            <nav key={column.heading} aria-label={column.heading}>
               <p className="text-[0.8125rem] font-medium text-foreground">
                 {column.heading}
               </p>
               <ul className="mt-3 space-y-2">
-                {column.items.map((item) =>
-                  item.href ? (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        className="text-[0.8125rem] text-muted-foreground hover:text-foreground"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ) : (
-                    <li
-                      key={item.label}
-                      className="text-[0.8125rem] text-muted-foreground"
+                {column.items.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-[0.8125rem] text-muted-foreground hover:text-foreground"
                     >
                       {item.label}
-                    </li>
-                  )
-                )}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
-        <p className="mt-10 text-[0.8125rem] text-muted-foreground">
-          © {new Date().getFullYear()} Freelancer Finance Tools. Working title
-          — not a final brand.
+        <p className="mt-10 max-w-[640px] text-[0.8125rem] leading-relaxed text-muted-foreground">
+          Informational tools only — not financial, tax, or legal advice.
+          Fees and rates can change; verify important figures with the
+          provider. See the{" "}
+          <Link href="/terms" className="underline underline-offset-2 hover:text-foreground">
+            Terms of Use
+          </Link>
+          .
+        </p>
+        <p className="mt-3 text-[0.8125rem] text-muted-foreground">
+          © {new Date().getFullYear()} Freelancer Finance Tools
         </p>
       </Container>
     </footer>

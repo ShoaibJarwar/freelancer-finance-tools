@@ -18,6 +18,11 @@ const ROUTES: { path: string; priority: number }[] = [
   { path: "/guides/how-freelancer-platform-fees-work", priority: 0.6 },
   { path: "/guides/freelancer-payment-fees-explained", priority: 0.6 },
   { path: "/guides/usd-to-pkr-for-freelancers", priority: 0.6 },
+  { path: "/about", priority: 0.3 },
+  { path: "/contact", priority: 0.3 },
+  { path: "/privacy", priority: 0.3 },
+  { path: "/terms", priority: 0.3 },
+  { path: "/affiliate-disclosure", priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Alert } from "@/components/ui/Alert";
 import { ToolPreviewFlow } from "@/components/home/ToolPreviewFlow";
+
+export const metadata: Metadata = {
+  title: { absolute: "Freelancer Finance Tools" },
+  description:
+    "Calculators and guides showing what freelancers paid by international clients can and can't calculate about platform fees, payment-provider costs, and currency conversion — with sources and uncertainty labeled.",
+};
 
 export default function Home() {
   return (
@@ -22,7 +29,7 @@ export default function Home() {
               href="/tools/freelancer-fee-calculator"
               className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-primary px-4 text-[0.9375rem] font-medium text-primary-foreground hover:bg-primary-hover"
             >
-              Calculate your net amount
+              Calculate your amount after platform fee
             </Link>
           </div>
         </div>
@@ -74,7 +81,7 @@ export default function Home() {
                   Freelancer Fee Calculator
                 </p>
                 <p className="mt-1 text-[0.875rem] text-muted-foreground">
-                  See what you&apos;ll actually receive from a client payment.
+                  See how much of a client payment remains after Upwork&apos;s platform fee.
                 </p>
                 <Link
                   href="/tools/freelancer-fee-calculator"
@@ -176,7 +183,7 @@ export default function Home() {
             href="/tools/freelancer-fee-calculator"
             className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] bg-primary px-4 text-[0.9375rem] font-medium text-primary-foreground hover:bg-primary-hover"
           >
-            Calculate your net amount
+            Calculate your amount after platform fee
           </Link>
         </div>
       </div>
